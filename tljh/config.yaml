@@ -1,0 +1,2 @@
+user_environment:
+  default_app: jupyterlab
