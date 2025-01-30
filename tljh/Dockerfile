@@ -42,9 +42,11 @@ RUN /opt/tljh/hub/bin/python3 -m jupyterhub_traefik_proxy.install --output=/opt/
 
 ARG TLJH_UID=1009
 ARG TLJH_GID=1009
+ARG DOCKER_GID=2375
 RUN \
+    groupadd -g $DOCKER_GID docker && \
     groupadd -g $TLJH_GID tljh && \
-    useradd -g tljh -d /opt/tljh/state -m -u $TLJH_UID tljh && \
+    useradd -g tljh -d /opt/tljh/state -m -G users,docker -u $TLJH_UID tljh && \
     mkdir -p /opt/tljh/state/rules && \
     chown -R tljh:tljh /opt/tljh/state
 

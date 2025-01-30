@@ -1,0 +1,40 @@
+services:
+  docker:
+    image: docker:dind
+    privileged: true
+    networks:
+      - frontend
+    ports:
+      - 8000:8000
+    volumes:
+      - docker-data:/var/lib/docker
+      - docker-sock:/run
+    healthcheck:
+      test: ["CMD", "docker", "info"]
+      start_period: 10s
+      interval: 2s
+      timeout: 2s
+      retries: 10
+  tljh:
+    build: ./tljh
+    network_mode: service:docker
+    volumes:
+      - tljh-config:/opt/tljh/config
+      - tljh-state:/opt/tljh/state
+      - type: volume
+        source: docker-sock
+        target: /run/docker.sock
+        volume:
+          subpath: docker.sock
+    depends_on:
+      docker:
+        condition: service_healthy
+
+volumes:
+  tljh-config:
+  tljh-state:
+  docker-data:
+  docker-sock:
+
+networks:
+  frontend:
