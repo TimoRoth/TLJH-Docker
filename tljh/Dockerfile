@@ -10,6 +10,7 @@ RUN \
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc && \
     chmod a+r /etc/apt/keyrings/docker.asc && \
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" > /etc/apt/sources.list.d/docker.list && \
+    curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
     apt-get -y update && \
     apt-get -y install --no-install-recommends docker-ce-cli python3 python3-pip python3-venv git sqlite3 && \
     apt-get -y clean && \
@@ -21,7 +22,7 @@ RUN \
     set -x && \
     export DEBIAN_FRONTEND=noninteractive && \
     apt-get -y update && \
-    apt-get -y install --no-install-recommends nodejs npm && \
+    apt-get -y install --no-install-recommends nodejs && \
     python3 -m venv /opt/tljh/hub && \
     /opt/tljh/hub/bin/pip install --upgrade --no-cache pip setuptools && \
     /opt/tljh/hub/bin/pip install \
