@@ -36,6 +36,9 @@ volumes:
   tljh-state:
   docker-data:
   docker-sock:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
 
 networks:
   frontend:
