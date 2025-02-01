@@ -17,7 +17,10 @@ services:
       timeout: 2s
       retries: 10
   tljh:
-    build: ./tljh
+    build:
+      context: ./tljh
+      args:
+        - DOCKER_GID=2375
     network_mode: service:docker
     volumes:
       - tljh-config:/opt/tljh/config
