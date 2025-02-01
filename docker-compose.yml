@@ -21,9 +21,11 @@ services:
       context: ./tljh
       args:
         - DOCKER_GID=2375
+        - TLJH_UID=${TLJH_UID:-1009}
+        - TLJH_GID=${TLJH_GID:-1009}
     network_mode: service:docker
     volumes:
-      - tljh-config:/opt/tljh/config
+      - ./config:/opt/tljh/config
       - tljh-state:/opt/tljh/state
       - type: volume
         source: docker-sock
@@ -35,7 +37,6 @@ services:
         condition: service_healthy
 
 volumes:
-  tljh-config:
   tljh-state:
   docker-data:
   docker-sock:
