@@ -23,18 +23,21 @@ RUN \
     export DEBIAN_FRONTEND=noninteractive && \
     apt-get -y update && \
     apt-get -y install --no-install-recommends nodejs && \
+    npm install --global yarn && \
     python3 -m venv /opt/tljh/hub && \
     /opt/tljh/hub/bin/pip install --upgrade --no-cache pip setuptools && \
     /opt/tljh/hub/bin/pip install \
-        git+https://github.com/jupyterhub/the-littlest-jupyterhub.git \
-        git+https://github.com/plasmabio/tljh-repo2docker.git \
+        git+https://github.com/jupyterhub/the-littlest-jupyterhub.git@main \
+        git+https://github.com/jupyterhub/jupyterhub@4.x \
+        git+https://github.com/plasmabio/tljh-repo2docker.git@master \
         jupyterhub-nativeauthenticator \
         jupyterhub-idle-culler \
         jupyterhub-traefik-proxy \
         pycurl && \
     mkdir -p /opt/tljh/config/templates/extra-assets && \
     ln -s ../../../../templates/extra-assets /opt/tljh/hub/share/jupyterhub/static/extra-assets && \
-    apt-get -y remove --purge nodejs npm && \
+    npm uninstall --global yarn && \
+    apt-get -y remove --purge nodejs && \
     apt-get -y autoremove --purge && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/*
