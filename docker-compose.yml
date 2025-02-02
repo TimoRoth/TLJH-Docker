@@ -1,6 +1,7 @@
 services:
   docker:
     image: docker:dind
+    restart: unless-stopped
     privileged: true
     networks:
       - frontend
@@ -17,6 +18,7 @@ services:
       timeout: 2s
       retries: 10
   tljh:
+    restart: unless-stopped
     build:
       context: ./tljh
       args:
