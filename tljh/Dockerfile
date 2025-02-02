@@ -25,13 +25,15 @@ RUN \
     apt-get -y install --no-install-recommends nodejs && \
     python3 -m venv /opt/tljh/hub && \
     /opt/tljh/hub/bin/pip install --upgrade --no-cache pip setuptools && \
-    /opt/tljh/hub/bin/pip install \
+    /opt/tljh/hub/bin/pip install --no-cache \
         git+https://github.com/jupyterhub/the-littlest-jupyterhub.git \
         git+https://github.com/TimoRoth/tljh-repo2docker.git@oggm \
         jupyterhub-nativeauthenticator \
         jupyterhub-idle-culler \
         jupyterhub-traefik-proxy \
         pycurl && \
+    /opt/tljh/hub/bin/pip install --upgrade --no-cache \
+        dockerspawner && \
     mkdir -p /opt/tljh/config/templates/extra-assets && \
     ln -s ../../../../templates/extra-assets /opt/tljh/hub/share/jupyterhub/static/extra-assets && \
     apt-get -y remove --purge nodejs npm && \
