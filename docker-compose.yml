@@ -5,7 +5,7 @@ services:
     networks:
       - frontend
     ports:
-      - 8000:8000
+      - ${TLJH_PORT:-8000}:8000
     volumes:
       - /etc/resolv.conf:/etc/resolv.conf:ro
       - docker-data:/var/lib/docker
