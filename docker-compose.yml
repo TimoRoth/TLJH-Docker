@@ -29,11 +29,7 @@ services:
     volumes:
       - ./config:/opt/tljh/config
       - tljh-state:/opt/tljh/state
-      - type: volume
-        source: docker-sock
-        target: /run/docker.sock
-        volume:
-          subpath: docker.sock
+      - docker-sock:/run
     depends_on:
       docker:
         condition: service_healthy
