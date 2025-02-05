@@ -35,7 +35,7 @@ RUN \
     /opt/tljh/hub/bin/pip install --upgrade --no-cache \
         dockerspawner && \
     mkdir -p /opt/tljh/config/templates/extra-assets && \
-    ln -s ../../../../templates/extra-assets /opt/tljh/hub/share/jupyterhub/static/extra-assets && \
+    ln -s ../../../../config/templates/extra-assets /opt/tljh/hub/share/jupyterhub/static/extra-assets && \
     apt-get -y remove --purge nodejs npm && \
     apt-get -y autoremove --purge && \
     apt-get -y clean && \
