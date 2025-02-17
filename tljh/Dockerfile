@@ -27,7 +27,7 @@ RUN \
     /opt/tljh/hub/bin/pip install --upgrade --no-cache pip setuptools && \
     /opt/tljh/hub/bin/pip install --no-cache \
         git+https://github.com/jupyterhub/the-littlest-jupyterhub.git \
-        git+https://github.com/TimoRoth/tljh-repo2docker.git@oggm \
+        git+https://github.com/plasmabio/tljh-repo2docker.git \
         jupyterhub-nativeauthenticator \
         jupyterhub-idle-culler \
         jupyterhub-traefik-proxy \
