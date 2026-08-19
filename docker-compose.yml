@@ -10,7 +10,7 @@ services:
     volumes:
       - /etc/resolv.conf:/etc/resolv.conf:ro
       - docker-data:/var/lib/docker
-      - docker-sock:/run
+      - docker-sock:/run:z
     healthcheck:
       test: ["CMD", "docker", "info"]
       start_period: 10s
@@ -27,9 +27,9 @@ services:
         - TLJH_GID=${TLJH_GID:-1009}
     network_mode: service:docker
     volumes:
-      - ./config:/opt/tljh/config
+      - ./config:/opt/tljh/config:Z
       - tljh-state:/opt/tljh/state
-      - docker-sock:/run
+      - docker-sock:/run:z
     depends_on:
       docker:
         condition: service_healthy
